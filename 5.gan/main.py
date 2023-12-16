@@ -142,16 +142,9 @@ def train(epochs, dataset):
         print("Generator Loss: {} Discriminator Loss: {}".format(loss['gen loss'], loss['disc loss']))
 
 
-SIZE = 128
-_img = []
-path = 'input/without_mask'
-files = os.listdir(path)
-files = sorted_alphanumeric(files)
-
-
-if __name__ == "__main__":
+def save_trained_model():
     for i in tqdm(files):
-        if i == 'seed0100.png':
+        if i == 'seed10000.png':
             break
         else:
             img = cv2.imread(path + '/' + i, 1)
@@ -191,6 +184,16 @@ if __name__ == "__main__":
 
     generator.save('generator.h5')
     discriminator.save("discriminator.h5")
+
+
+SIZE = 128
+_img = []
+path = 'input/without_mask'
+files = os.listdir(path)
+files = sorted_alphanumeric(files)
+
+
+if __name__ == "__main__":
 
     generator = load_model('generator.h5')
     discriminator = load_model('discriminator.h5')
