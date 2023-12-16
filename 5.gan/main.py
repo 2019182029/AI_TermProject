@@ -144,7 +144,7 @@ def train(epochs, dataset):
 
 def save_trained_model():
     for i in tqdm(files):
-        if i == 'seed10000.png':
+        if i == 'seed9999.png':
             break
         else:
             img = cv2.imread(path + '/' + i, 1)
