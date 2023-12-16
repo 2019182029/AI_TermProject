@@ -143,6 +143,9 @@ def train(epochs, dataset):
 
 
 def save_trained_model():
+    global optimizer
+    global cross_entropy
+
     for i in tqdm(files):
         if i == 'seed9999.png':
             break
@@ -156,10 +159,7 @@ def save_trained_model():
 
     plot_images(5)
 
-    batch_size = 32
     dataset = tf.data.Dataset.from_tensor_slices(np.array(_img)).batch(batch_size)
-
-    latent_dim = 100
 
     generator = Generator()
     generator.summary()
@@ -187,6 +187,9 @@ def save_trained_model():
 
 
 SIZE = 128
+latent_dim = 100
+batch_size = 32
+
 _img = []
 path = 'input/without_mask'
 files = os.listdir(path)
@@ -195,6 +198,8 @@ files = sorted_alphanumeric(files)
 
 if __name__ == "__main__":
 
+    # 9999장의 이미지, epochs = 5로 학습한 generator, discriminator 모델을 로드한다.
+    # 이미지의 개수 혹은 epochs를 증가시켜 학습시킨 모델은 더욱 정교한 이미지를 생성한다.
     generator = load_model('generator.h5')
     discriminator = load_model('discriminator.h5')
 
@@ -211,6 +216,9 @@ if __name__ == "__main__":
     generated_images = generator.predict(noise)
 
     generated_images_uint8 = np.uint8((generated_images + 1.0) / 2.0 * 255.0)
+
+    plot_generated_images(1)
+    plt.show()
 
     directory = 'generated_images'
     if not os.path.exists(directory):
