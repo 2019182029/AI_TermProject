@@ -148,3 +148,5 @@ if __name__ == "__main__":
     POPULATION_SIZE = 640			n_iter = 7
     ANSWER = [2, 9, 3, 8, 1, 4]		SOLUTION = [2, 9, 3, 8, 1, 4]
 """
+
+

@@ -146,6 +146,11 @@ def save_trained_model():
     global optimizer
     global cross_entropy
 
+    _img = []
+    path = 'input/without_mask'
+    files = os.listdir(path)
+    files = sorted_alphanumeric(files)
+
     for i in tqdm(files):
         if i == 'seed9999.png':
             break
@@ -190,11 +195,6 @@ SIZE = 128
 latent_dim = 100
 batch_size = 32
 
-_img = []
-path = 'input/without_mask'
-files = os.listdir(path)
-files = sorted_alphanumeric(files)
-
 
 if __name__ == "__main__":
 
@@ -227,3 +227,5 @@ if __name__ == "__main__":
     for i in range(100):
         image = Image.fromarray(generated_images_uint8[i])
         image.save(f'{directory}/{i}.png')
+
+
